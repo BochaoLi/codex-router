@@ -1,0 +1,27 @@
+# ── Codex Desktop Configuration ──────────────────────────────
+# Location: C:\Users\<username>\.codex\config.toml
+#
+# This is the reference config that works with codex-router.
+# Copy these settings into your actual config.toml.
+
+model = "gpt-5.4-xhigh"
+model_provider = "openai"
+
+# OPTIONAL: sets reasoning effort for models that support it
+model_reasoning_effort = "xhigh"
+
+# ── CRITICAL ──────────────────────────────────────────────────
+# This MUST point to the proxy. Without it, Codex will bypass
+# codex-router entirely and compact will fail against upstream
+# services that don't implement /v1/responses/compact.
+openai_base_url = "http://127.0.0.1:18921/v1"
+
+# ── Context & Compaction Settings ─────────────────────────────
+# Max context window the model supports
+model_context_window = 200000
+
+# Token threshold at which Codex triggers auto-compaction.
+# LOWER = more frequent compaction (good for testing)
+# HIGHER = less frequent compaction (better performance)
+# Recommended: 20000 for testing, 180000 for production
+model_auto_compact_token_limit = 20000
